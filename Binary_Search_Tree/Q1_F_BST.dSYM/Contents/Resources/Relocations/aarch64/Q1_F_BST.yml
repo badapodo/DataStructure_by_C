@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/badapodo/Desktop/week5/hello/data_structures_docker/Data-Structures/Binary_Search_Tree/Q1_F_BST'
+relocations:     []
+...

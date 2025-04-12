@@ -91,8 +91,55 @@ int main()
 
 void postOrderIterativeS1(BSTNode *root)
 {
-	 /* add your code here */
+	if (root == NULL) {
+		return;
+	}
+
+	Stack* s = (Stack*)malloc(sizeof(Stack));
+	s->top = NULL;
+
+	BSTNode* curr = root;
+	BSTNode* prev = NULL;
+
+	push(s, curr);
+
+	while (!isEmpty(s)) {
+		curr = peek(s);
+
+		// 자식으로 내려가는 경우
+		if (prev == NULL || prev->left == curr || prev->right == curr) {
+			if (curr->left != NULL) {
+				push(s, curr->left);
+			}
+			else if (curr->right != NULL) {
+				push(s, curr->right);
+			}
+			else {
+				printf("%d ", curr->item);
+				pop(s);
+			}
+		}
+		// 왼쪽 자식에서 올라온 경우
+		else if (curr->left == prev) {
+			if (curr->right != NULL) {
+				push(s, curr->right);
+			}
+			else {
+				printf("%d ", curr->item);
+				pop(s);
+			}
+		}
+		// 오른쪽 자식에서 올라온 경우
+		else if (curr->right == prev) {
+			printf("%d ", curr->item);
+			pop(s);
+		}
+		prev = curr;
+	}
+
+	free(s); // 메모리 해제
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////
 
